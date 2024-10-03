@@ -19,6 +19,8 @@ jobs:
         cache: 'npm'
     - name: Install npm dependences
       run: npm install
+    - name: Install Playwright 
+      run: npx playwright install  
     - name: Start the backend 
       run: npm run start-be &
     - name: Start the frontend 
