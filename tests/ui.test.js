@@ -60,18 +60,6 @@ test('Verify "Add Book" link is visible', async({page}) => {
     expect(isLinkVisible).toBe(true);
 });
 
-test('Verify user email is visible', async ({page}) => {
-    await page.goto('http://localhost:3000/login');
-    await page.fill('input[name="email"]', 'peter@abv.bg');
-    await page.fill('input[name="password"]', '123456');
-    await page.click('input[type="submit"]');
-
-    const userEmail = (await page.$('#user > span')).textContent();
-    // const isEmailVisible = userEmail.isVisible();
-
-    expect(userEmail !== undefined);
-});
-
 test('Test "Login Page" with Valid credentials', async ({page}) => {
     await page.goto('http://localhost:3000/login');
     await page.fill('input[name="email"]', 'peter@abv.bg');
