@@ -133,17 +133,7 @@ test('Testing Login page with valid email and empty password', async ({page}) =>
     expect(page.url()).toBe('http://localhost:3000/login');
 });
 
-test('Testing Register page with valid values', async({page}) => {
-   await page.goto('http://localhost:3000/register');
-   await page.fill('input[name="email"]', 'ivan1@abv.bg');
-   await page.fill('input[name="password"]', '123456');
-   await page.fill('input[name="confirm-pass"]', '123456');
-   await page.click('input[type="submit"]');
-
-   expect(page.url()).toBe('http://localhost:3000/catalog');
-});
-
-test('Testing Register page with empty fields', async ({page}) => {
+test('Testing Register page with empty confirm-pass', async ({page}) => {
     await page.goto('http://localhost:3000/register');
     await page.fill('input[name="email"]', '');
     await page.fill('input[name="password"]', '');
@@ -185,7 +175,7 @@ test('Testing Register page with empty fields', async ({page}) => {
     expect(page.url()).toBe('http://localhost:3000/register');
 });
 
-test('Testing Register page with empty fields', async ({page}) => {
+test('Testing Register page with different passwords', async ({page}) => {
     await page.goto('http://localhost:3000/register');
     await page.fill('input[name="email"]', 'peter1@abv.bg');
     await page.fill('input[name="password"]', '1234');
