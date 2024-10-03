@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  npm_security_tests:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the code 
@@ -17,22 +17,11 @@ jobs:
       with:
         node-version: 20
         cache: 'npm'
-    - name: Install dependences
+    - name: Install npm dependences
       run: npm install
-    - name: Execute tests 
-      run: npm run test
-      
-  integration_tests:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout the code 
-      uses: actions/checkout@v4
-    - name: Install NodeJS
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20.x
-        cache: 'npm'
-    - name: Install dependences
-      run: npm install
-    - name: Run Integration tests 
-      run: npm run test
+    - name: Start the backend 
+      run: npm run start-be
+    - name: Start the frontend 
+      run: npm run start-fe
+    - name: Start UI tests
+      run: npm run test:ui
