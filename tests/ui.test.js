@@ -60,14 +60,15 @@ test('Verify "Add Book" link is visible', async({page}) => {
     expect(isLinkVisible).toBe(true);
 });
 
-// test('Test "Login Page" with Valid credentials', async ({page}) => {
-//     await page.goto('http://localhost:3000/login');
-//     await page.fill('input[name="email"]', 'peter@abv.bg');
-//     await page.fill('input[name="password"]', '123456');
-//     await page.click('input[type="submit"]');
+test('Test "Login Page" with Valid credentials', async ({page}) => {
+    await page.goto('http://localhost:3000/login');
+    await page.fill('input[name="email"]', 'peter@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+    await page.click('input[type="submit"]');
+    await page.$('a[href="/catalog]');
 
-//     expect(page.url()).toBe('http://localhost:3000/catalog');
-// });
+    expect(page.url()).toBe('http://localhost:3000/catalog');
+});
 
 test('Test "Login Page" with Invalid credentials', async ({page}) => {
     await page.goto('http://localhost:3000/login');

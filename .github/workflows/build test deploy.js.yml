@@ -19,6 +19,8 @@ jobs:
         cache: 'npm'
     - name: Install npm dependences
       run: npm install
+    - name: change the config
+      run: echo "export const settings = { host:\"http://localhost:3030\" }" > config.js  
     - name: Install Playwright 
       run: npx playwright install  
     - name: Start the backend 
@@ -34,7 +36,7 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
-      - name: Deploy frontend
+      - name: Deploy backend
         uses: JorgeLNJunior/render-deploy@v1.4.4
         with:
           service_id: ${{ secrets.BACKEND_API_KEY }}
@@ -50,7 +52,7 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
-      - name: Deploy backend
+      - name: Deploy frontend
         uses: JorgeLNJunior/render-deploy@v1.4.4
         with:
           service_id: ${{ secrets.FRONTEND_API_KEY }}

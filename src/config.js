@@ -1,0 +1,1 @@
+export const settings = { host: "https://library-catalog-be-jyys.onrender.com" }
