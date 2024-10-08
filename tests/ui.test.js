@@ -36,39 +36,42 @@ test('Verify "All Books" link is visible after login', async ({ page }) => {
     expect(isLinkVisible).toBe(true);
 });
 
-// test('Verify "My Books" link is visible after user login', async ({ page }) => {
-//     await page.goto('http://localhost:3000/login');
-//     await page.fill('input[name="email"]', 'john@abv.bg');
-//     await page.fill('input[name="password"]', '123456');
-//     await page.click('input[type="submit"]');
+test('Verify "My Books" link is visible after user login', async ({ page }) => {
+    await page.goto('http://localhost:3000/login');
+    await page.fill('input[name="email"]', 'peter@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+    await page.click('input[type="submit"]');
+    await page.waitForURL("http://localhost:3000/catalog");
 
-//     const myBooksLink = await page.$('a[href="/profile"]');
-//     const isLinkVisible = await myBooksLink.isVisible();
+    const myBooksLink = await page.$('a[href="/profile"]');
+    const isLinkVisible = await myBooksLink.isVisible();
 
-//     expect(isLinkVisible).toBe(true);
-// });
+    expect(isLinkVisible).toBe(true);
+});
 
-// test('Verify "Add Book" link is visible', async ({ page }) => {
-//     await page.goto('http://localhost:3000/login');
-//     await page.fill('input[name="email"]', 'john@abv.bg');
-//     await page.fill('input[name="password"]', '123456');
-//     await page.click('input[type="submit"]');
+test('Verify "Add Book" link is visible', async ({ page }) => {
+    await page.goto('http://localhost:3000/login');
+    await page.fill('input[name="email"]', 'john@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+    await page.click('input[type="submit"]');
+    await page.waitForURL("http://localhost:3000/catalog");
 
-//     const addBookLink = await page.$('a[href="/create"]');
-//     const isLinkVisible = await addBookLink.isVisible();
+    const addBookLink = await page.$('a[href="/create"]');
+    const isLinkVisible = await addBookLink.isVisible();
 
-//     expect(isLinkVisible).toBe(true);
-// });
+    expect(isLinkVisible).toBe(true);
+});
 
-// test('Test "Login Page" with Valid credentials', async ({ page }) => {
-//     await page.goto('http://localhost:3000/login');
-//     await page.fill('input[name="email"]', 'peter@abv.bg');
-//     await page.fill('input[name="password"]', '123456');
-//     await page.click('input[type="submit"]');
-//     await page.$('a[href="/catalog"]');
-
-//     expect(page.url()).toBe('http://localhost:3000/catalog');
-// });
+test('Test "Login Page" with Valid credentials', async ({ page }) => {
+    await page.goto('http://localhost:3000/login');
+    await page.fill('input[name="email"]', 'peter@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+    await page.click('input[type="submit"]');
+    await page .waitForURL("http://localhost:3000/catalog");
+   
+    await page.$('a[href="/catalog"]');
+    expect(page.url()).toBe('http://localhost:3000/catalog');
+});
 
 test('Test "Login Page" with Invalid credentials', async ({ page }) => {
     await page.goto('http://localhost:3000/login');
@@ -260,17 +263,18 @@ test('Login and navigate to Details page', async ({ page }) => {
     expect(detailsPageTitle).toBe('Test Book');
   });
 
-// test('Verify visibility of Logout button after user login', async ({ page }) => {
-//     await page.goto('http://localhost:3000/login');
-//     await page.fill('input[name="email"]', 'peter@abv.bg');
-//     await page.fill('input[name="password"]', '123456');
-//     await page.click('input[type="submit"]');
+test('Verify visibility of Logout button after user login', async ({ page }) => {
+    await page.goto('http://localhost:3000/login');
+    await page.fill('input[name="email"]', 'peter@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+    await page.click('input[type="submit"]');
+    await page.waitForURL("http://localhost:3000/catalog");
    
-//     const logoutLink = await page.$('a[href="javascript:void(0)"]');
-//     const isLogoutLinkVisible = await logoutLink.isVisible();
+    const logoutLink = await page.$('a[href="javascript:void(0)"]');
+    const isLogoutLinkVisible = await logoutLink.isVisible();
   
-//     expect(isLogoutLinkVisible).toBe(true);
-//   });
+    expect(isLogoutLinkVisible).toBe(true);
+  });
 
 test('Verify redirection of Logout link after user login', async ({ page }) => {
     await page.goto('http://localhost:3000/login');
